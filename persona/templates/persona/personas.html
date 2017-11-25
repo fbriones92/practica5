@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Personas</title>
+
+</head>
+<body>
+	{% for persona in personas %}
+		<div style="border-style: solid">
+		<b>Id : </b><span>{{persona.id}}</span><br/>
+		<b>Nombre : </b><span>{{persona.nombre}}</span><br/>
+		<b>Apellido : </b><span>{{persona.apellido}}</span><br/>
+		<b>Edad : </b><span>{{persona.edad}}</span><br/>
+		{% if persona.esMayorEdad %} 
+			<span style="color:blue">Es mayor edad</span><br/>
+		{% else %} 
+			<span style="color:yellow">Es menor edad</span><br/>
+		{% endif %}
+		
+		{% for trabajo in persona.trabajos %}
+			<div>
+			<b>cargo:  </b><span>{{ trabajo.cargo }}</span><br/>
+			<b>empresa:  </b><span>{{ trabajo.empresa }}</span><br/>
+			<b>sueldo:  </b><span>{{ trabajo.sueldo }}</span><br/>
+			</div>
+		{% endfor %}
+		
+		<a href="{% url 'persona_url' persona.id %}">Ir a detalle</a>
+		</div>
+	{% endfor %}
+</body>
+</html>
